@@ -41,4 +41,11 @@ public class DeductionTest {
 		circumstances.add(dnaStatement);
 		return circumstances;
 	}
+	@Test
+	public void testGivingWeightToCircumstance() {
+		Circumstance sunStatement = new Circumstance("Sun rise in the east");
+		sunStatement.setWeight(100);
+		assertEquals(100,sunStatement.weight);
+		
+	}
 }
