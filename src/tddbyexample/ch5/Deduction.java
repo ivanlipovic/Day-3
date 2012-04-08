@@ -1,5 +1,6 @@
 package tddbyexample.ch5;
 
+import java.util.Iterator;
 import java.util.Set;
 
 public class Deduction {
@@ -8,6 +9,12 @@ public class Deduction {
 		premise = observation;
 	}
 	public boolean valid() {
-		return true;
+		boolean conclusion = true;
+		for(Circumstance claim : premise){
+			if(claim.weight == 0){
+				conclusion = false;
+			}
+		}
+		return conclusion;
 	}
 }

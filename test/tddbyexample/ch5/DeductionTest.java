@@ -19,6 +19,7 @@ public class DeductionTest {
 	private Set<Circumstance> observation(){
 		Set<Circumstance> circumstances = new LinkedHashSet<Circumstance>();
 		Circumstance nickStatement = new Circumstance("Earlier in the night, Nick said he enjoys comfortable footwear");
+		nickStatement.weight = 100;
 		circumstances.add(nickStatement);
 		return circumstances;
 	}
@@ -55,8 +56,9 @@ public class DeductionTest {
 		ivanStatement.setWeight(50);
 		Circumstance dnaStatement = new Circumstance("DNA sequencing found that Ivan had indeed slept with Shaniqua but was too ashamed to admit it in public");
 		dnaStatement.setWeight(100);
-		ConflictDetector judge = new ConflictDetector(ivanStatement, dnaStatement);
-		int value = judge.analyze();
-		assertEquals(-1, value);
+		ConflictDetector judge = new ConflictDetector(ivanStatement, dnaStatement,  true);
+		judge.analyze();
+		assertEquals(0,ivanStatement.weight);
+		assertEquals(100,dnaStatement.weight);
 	}
 }
